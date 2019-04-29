@@ -1,0 +1,65 @@
+#!/usr/bin/env node
+
+const winston = require("winston");
+const { combine, timestamp, label, printf } = winston.format;
+
+// ------------ set logger -----------{{{
+const loggerFormat = printf(info => {
+	return `${info.timestamp} [${info.level}]: ${info.message}`;
+});
+
+const logger = winston.createLogger({
+	level: "info",
+	transports: [
+		new winston.transports.File({
+			filename: "/var/log/nodejs/nodejs.log",
+			handleExceptions: true,
+			humanReadableUnhandledException: true,
+			json: false
+		})
+	],
+	format: combine(timestamp(), loggerFormat)
+});
+//}}}
+
+var express = require('express');
+var bodyParser = require("body-parser");
+var app = express();
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
+
+var score = { black:0, yellow: 0 };
+app.post('/score', urlencodedParser,function(req,res){
+	res.setHeader('Content-Type', 'application/json');
+	score[req.body.scorer] += 1;
+	res.end(JSON.stringify(score));
+	sendAll(JSON.stringify(score));
+});
+var server = app.listen(8080, '127.0.0.1');
+
+// ------------------- open websocket -------------------
+const WebSocket = require("ws");
+
+const wss = new WebSocket.Server({ port: 8081 });
+
+wss.on("connection", function connection(ws, req) {
+	//handle receiving a message{{{
+	ws.on("message", function incoming(message) {
+		sendAll(message);
+	});//}}}
+	//handle errors{{{
+	ws.on("error", error => {
+		logger.error(String(error));
+	});//}}}
+	ws.send(JSON.stringify(score));
+});
+
+function sendAll(data) {
+	wss.clients.forEach(function each(client) {
+		if (client.readyState === WebSocket.OPEN) {
+			client.send(data);
+		}
+	});
+}
+
+
+// vim: set ft=javascript:
