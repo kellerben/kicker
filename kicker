@@ -27,7 +27,15 @@ var bodyParser = require("body-parser");
 var app = express();
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
-var score = { black:0, yellow: 0 };
+var score;
+function reset() {
+	score = { black:0, yellow: 0 };
+}
+reset();
+app.post('/reset', function(req,res){
+	reset();
+	sendAll(JSON.stringify(score));
+});
 app.post('/score', urlencodedParser,function(req,res){
 	res.setHeader('Content-Type', 'application/json');
 	score[req.body.scorer] += 1;

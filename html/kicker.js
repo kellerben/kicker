@@ -7,3 +7,6 @@ connection.onmessage = function(e){
 function score(name){
 	$.post("/api/score/",{scorer:name});
 }
+function reset(){
+	$.post("/api/reset/");
+}
