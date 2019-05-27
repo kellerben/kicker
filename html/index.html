@@ -6,16 +6,23 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<script type='text/javascript' src='jquery.min.js'></script>
 		<script type='text/javascript' src='kicker.js'></script>
+		<link rel='stylesheet' type='text/css' href='style.css'  media='screen'/>
 	</head>
 	<body>
+		<!--<table>-->
+			<!--<tr><td><iframe src='single.html#nw'></iframe></td><td><iframe src='single.html#no'></iframe></td></tr>-->
+			<!--<tr><td><iframe src='single.html#sw'></iframe></td><td><iframe src='single.html#so'></iframe></td></tr>-->
+		<!--</table>-->
 		<div>
 			<table>
-				<tr><th>black</th><th>yellow</th></tr>
-				<tr><td id='black'>?</td><td id='yellow'>?</td></tr>
+				<tr><th>Rank</th><th>Player</th><th>Points</th></tr>
+				<tr class='players'><td class='rank'>1</td><td class='name'><input type="text" placeholder="Playername" /></td><td class='points'>?</td></tr>
+				<tr class='players'><td class='rank'>2</td><td class='name'><input type="text" placeholder="Playername" /></td><td class='points'>?</td></tr>
+				<tr class='players'><td class='rank'>3</td><td class='name'><input type="text" placeholder="Playername" /></td><td class='points'>?</td></tr>
 			</table>
-			<button onclick='score("black")'>Black</button>
-			<button onclick='score("yellow")'>Yellow</button>
-			<button onclick='reset()'>Reset</button>
+			<div>
+				<button onclick='reset()'>Reset</button>
+			</div>
 		</div>
 	</body>
 </html>

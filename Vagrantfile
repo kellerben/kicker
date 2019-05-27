@@ -27,6 +27,7 @@ Vagrant.configure("2") do |config|
 		npm install express
 		npm install body-parser
 		npm install jquery
+		npm install nosleep.js
 		ln -s ../node_modules/jquery/dist/jquery.min.js /var/www/html/
 		npm install winston@next
 		npm install pm2 -g
