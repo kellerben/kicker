@@ -14,14 +14,18 @@
 			<!--<tr><td><iframe src='single.html#sw'></iframe></td><td><iframe src='single.html#so'></iframe></td></tr>-->
 		<!--</table>-->
 		<div>
-			<table>
-				<tr><th>Rank</th><th>Player</th><th>Points</th></tr>
-				<tr class='players'><td class='rank'>1</td><td class='name'><input type="text" placeholder="Playername" /></td><td class='points'>?</td></tr>
-				<tr class='players'><td class='rank'>2</td><td class='name'><input type="text" placeholder="Playername" /></td><td class='points'>?</td></tr>
-				<tr class='players'><td class='rank'>3</td><td class='name'><input type="text" placeholder="Playername" /></td><td class='points'>?</td></tr>
-			</table>
+			<img src="kicker-top.jpg" alt="Kicker" usemap="#kickermap"/>
+			<map name="kickermap">
+				<!--<area shape="rect" href="single.html#no" alt="alttext" coords="0,0,300,500" />-->
+				<area shape="rect" href="single.html#nw" alt="alttext" coords="500,0,1000,300" />
+				<area shape="rect" href="single.html#sw" alt="alttext" coords="0,300,500,600" />
+				<area shape="rect" href="single.html#so" alt="alttext" coords="500,300,1000,600" />
+			</map>
 			<div>
-				<button onclick='reset()'>Reset</button>
+				<div><form action='scores.html'><button class='large' onclick='submit()'>Scores</button></form></div>
+				<div><button class='large' onclick='reset()'>Reset</button></div>
+				<div><button class='large' onclick='randomNames()'>Set Random Names</button></div>
+				<div><form action='multiple.html'><button class='large' onclick='submit()'>All Windows</button></form></div>
 			</div>
 		</div>
 	</body>

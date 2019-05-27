@@ -1,6 +1,12 @@
-var connection = new WebSocket("ws://"+document.domain+"/ws/", "json");
+var connection;
+function renewconnection(){
+	connection = new WebSocket("ws://"+document.domain+"/ws/", "json");
+	connection.onmessage = updateScore;
+	connection.onclose = renewconnection;
+}
+
 var data;
-connection.onmessage = function(e){
+function updateScore(e){
 	data = JSON.parse(e.data);
 	var ary = Object.values(data).sort(function(a,b){
 		return b.points-a.points;
@@ -20,6 +26,9 @@ connection.onmessage = function(e){
 	});
 
 }
+function randomNames(){
+	$.post("/api/randomNames/");
+}
 function reset(){
 	$.post("/api/reset/");
 }
@@ -32,5 +41,11 @@ function changePlayerName(e){
 	connection.send(JSON.stringify({ position: position, name: name}));
 };
 $(document).ready(function(){
+	renewconnection();
 	$('tr.players td.name input').bind('input',changePlayerName);
+	var noSleep = new NoSleep();
+	document.addEventListener('click', function enableNoSleep() {
+		document.removeEventListener('click', enableNoSleep, false);
+		noSleep.enable();
+	}, false);
 });

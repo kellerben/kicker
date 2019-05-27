@@ -1,0 +1,22 @@
+table, table input {
+	font-size: 1.5em;
+}
+input {
+	border: none;
+}
+input.large, button.large, .large {
+	font-size: 10ex;
+	width: 100%;
+}
+img {
+	width: 100vw;
+}
+th {
+	text-align: left;
+}
+#score {
+	font-size: 100vw;
+}
+.centered {
+	text-align: center;
+}

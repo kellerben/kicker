@@ -30,11 +30,20 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })
 var score;
 var rounds;
 var players;
+function randomNames(){
+	score.nw.name = "Ben";
+	score.sw.name = "Tom";
+	score.so.name = "Felix";
+}
+app.post('/randomNames', function(req,res){
+	randomNames();
+	sendAll(JSON.stringify(score));
+});
 function reset(){
 	score = {
-		nw: {name: "Ben", points: 0, position: "nw"},
-		so: {name: "Felix", points: 0, position: "so"},
-		sw: {name: "Tom", points: 0, position: "sw"},
+		nw: {name: "", points: 0, position: "nw"},
+		so: {name: "", points: 0, position: "so"},
+		sw: {name: "", points: 0, position: "sw"},
 	};
 	rounds = 0;
 }
@@ -58,6 +67,9 @@ app.post('/goal', urlencodedParser,function(req,res){
 			newscore["sw"] = score["sw"];
 		}
 		score = newscore;
+		score["nw"].position = "nw";
+		score["so"].position = "so";
+		score["sw"].position = "sw";
 	}
 	res.setHeader('Content-Type', 'application/json');
 	res.end(JSON.stringify(score));
