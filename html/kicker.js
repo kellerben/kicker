@@ -1,10 +1,9 @@
 var connection;
 function renewconnection(){
-	connection = new WebSocket("ws://"+document.domain+"/ws/", "json");
+	connection = new WebSocket("ws://" +location.hostname+":"+location.port+"/ws/", "json");
 	connection.onmessage = updateScore;
 	connection.onclose = renewconnection;
 }
-
 var data;
 function updateScore(e){
 	data = JSON.parse(e.data);
