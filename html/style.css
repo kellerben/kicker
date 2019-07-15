@@ -1,12 +1,14 @@
 table, table input {
 	font-size: 1.5em;
+	border: none;
 }
 input {
 	border: none;
 }
 input.large, button.large, .large {
-	font-size: 10ex;
+	font-size: 7ex;
 	width: 100%;
+	padding: 0;
 }
 img {
 	width: 100vw;
@@ -15,8 +17,24 @@ th {
 	text-align: left;
 }
 #score {
-	font-size: 100vw;
+	font-size: 80vw;
 }
 .centered {
 	text-align: center;
+}
+
+table.multiple td{
+	padding:0;
+	margin: 0;
+	line-height: 0;
+}
+
+iframe.multiple {
+	width: 49vw;
+	height:49vh;
+	margin: 0;
+}
+
+body {
+	margin: 0;
 }

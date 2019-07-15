@@ -1,26 +1,22 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
-  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<!DOCTYPE html>
+<html lang='en'>
 	<head>
 		<title>Kicker</title>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<script type='text/javascript' src='include/jquery.min.js'></script>
-		<script type='text/javascript' src='kicker.js'></script>
+		<meta charset="utf-8" />
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+		<script src='include/jquery.min.js'></script>
+		<script src='kicker.js'></script>
 		<link rel='stylesheet' type='text/css' href='style.css'  media='screen'/>
 	</head>
 	<body>
-		<table>
+		<table class='multiple'>
 			<tr>
-				<td>
-					<iframe width=500 height=800 src='single.html#nw'></iframe>
-				</td>
-				<td>
-					<!--<iframe width=500 height=800 src='single.html#no'></iframe>-->
-				</td>
+				<td><iframe class='multiple' src='single.html#nw'></iframe></td>
+				<td><iframe class='multiple' src='scores.html'></iframe></td>
 			</tr>
 			<tr>
-				<td><iframe width=500 height=800 src='single.html#sw'></iframe></td>
-				<td><iframe width=500 height=800 src='single.html#so'></iframe></td>
+				<td><iframe class='multiple' src='single.html#sw'></iframe></td>
+				<td><iframe class='multiple' src='single.html#so'></iframe></td>
 			</tr>
 		</table>
 	</body>
