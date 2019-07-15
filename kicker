@@ -29,10 +29,31 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 var score;
 var players;
+function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
+
 function randomNames(){
-	score.nw.name = "Ben";
-	score.sw.name = "Tom";
-	score.so.name = "Felix";
+	var names = ["Ben","Tom","Felix"];
+	shuffle(names);
+	score.nw.name = names[0];
+	score.sw.name = names[1];
+	score.so.name = names[2];
 }
 app.post('/randomNames', function(req,res){
 	randomNames();
