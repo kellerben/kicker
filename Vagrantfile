@@ -5,14 +5,15 @@ DEVELOPMENT=true
 
 Vagrant.configure("2") do |config|
 	config.vm.define "kicker"
-	config.vm.box = "bento/debian-9"
+	config.vbguest.auto_update = false
+	config.vm.box = "bento/debian-10"
 	config.vm.hostname = "kicker"
 
 	config.vm.provision "shell", inline: <<~SHELL
 		apt-get -yqq update
 		apt-get -yqq install dirmngr git
 		apt-key adv --recv-keys 1655A0AB68576280
-		echo "deb http://deb.nodesource.com/node_8.x stretch main" > /etc/apt/sources.list.d/nodejs.list
+		echo "deb http://deb.nodesource.com/node_12.x buster main" > /etc/apt/sources.list.d/nodejs.list
 		apt-get -yqq update
 		apt-get -yqq install nodejs
 	SHELL
