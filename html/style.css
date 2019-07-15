@@ -1,4 +1,4 @@
-table, table input, div.rounds {
+table, table input {
 	font-size: 1.5em;
 	border: none;
 }
@@ -35,10 +35,24 @@ iframe.multiple {
 	margin: 0;
 }
 
-div.rounds{
-	margin-top: 1ex;
-}
-
 body {
 	margin: 0;
+}
+
+div.rounds{
+	margin-top: 2ex;
+	font-size: 4em;
+}
+
+table#scores td, table#scores th {
+	border-right: solid 2px;
+	padding: 0 3px;
+}
+table#scores, table#scores input {
+	padding: 0;
+	width: 100%;
+}
+table#scores td.rank, table#scores td.points {
+	font-size: 7ex;
+	text-align: center;
 }
