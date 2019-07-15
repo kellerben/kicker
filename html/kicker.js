@@ -7,9 +7,14 @@ function renewconnection(){
 var data;
 function updateScore(e){
 	data = JSON.parse(e.data);
+	numrounds = Math.floor(1+data.rounds/6)*6;
+	$("span#rounds").text((data.rounds+1) + " / " + numrounds);
+	delete data.rounds;
+	console.log(data);
 	var ary = Object.values(data).sort(function(a,b){
 		return b.points-a.points;
 	});
+	console.log(ary);
 	$(ary).each(function(i,v){
 		if (i > 0) {
 			var ranks = $("tr.players td.rank");

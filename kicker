@@ -28,7 +28,6 @@ var app = express();
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 var score;
-var rounds;
 var players;
 function randomNames(){
 	score.nw.name = "Ben";
@@ -44,8 +43,8 @@ function reset(){
 		nw: {name: "", points: 0, position: "nw"},
 		so: {name: "", points: 0, position: "so"},
 		sw: {name: "", points: 0, position: "sw"},
+		rounds: 0
 	};
-	rounds = 0;
 }
 reset();
 app.post('/reset', function(req,res){
@@ -57,9 +56,10 @@ app.post('/goal', urlencodedParser,function(req,res){
 		score[req.body.scorer].points += 1;
 	} else { // Change positions
 		var newscore = {};
-		rounds += 1;
+		score["rounds"] += 1;
+		newscore["rounds"] = score["rounds"];
 		newscore["nw"] = score["so"];
-		if (rounds % 3 != 0) { // rotate 2 players every 3 rounds
+		if (score["rounds"] % 3 != 0) { // rotate 2 players every 3 rounds
 			newscore["so"] = score["sw"];
 			newscore["sw"] = score["nw"];
 		} else {

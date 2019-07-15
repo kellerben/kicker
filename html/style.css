@@ -1,4 +1,4 @@
-table, table input {
+table, table input, div.rounds {
 	font-size: 1.5em;
 	border: none;
 }
@@ -33,6 +33,10 @@ iframe.multiple {
 	width: 49vw;
 	height:49vh;
 	margin: 0;
+}
+
+div.rounds{
+	margin-top: 1ex;
 }
 
 body {
