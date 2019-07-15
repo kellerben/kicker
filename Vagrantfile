@@ -18,7 +18,7 @@ Vagrant.configure("2") do |config|
 	SHELL
 
 	if DEVELOPMENT
-		config.vm.provision "shell", inline: <<~SHELL
+		config.vm.provision "shell", run: "always", inline: <<~SHELL
 			mkdir -p /var/www
 			mount --bind /vagrant /var/www
 		SHELL
