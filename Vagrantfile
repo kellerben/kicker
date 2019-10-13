@@ -28,7 +28,7 @@ Vagrant.configure("2") do |config|
 		config.vm.provision "shell", inline: <<~SHELL
 			mkdir -p /var/www
 			cd /var/www
-			git clone https://github.com/kellerben/kicker.git
+			git clone https://github.com/kellerben/kicker.git .
 			apt-get -yqq install unattended-upgrades
 		SHELL
 		config.vm.synced_folder '.', '/vagrant', disabled: true
