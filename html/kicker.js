@@ -7,7 +7,7 @@ function renewconnection(){
 var data;
 function updateScore(e){
 	data = JSON.parse(e.data);
-	numrounds = Math.floor(1+data.rounds/6)*6;
+	var numrounds = Math.floor(1+data.rounds/6)*6;
 	$("span#rounds").text((data.rounds+1) + " / " + numrounds);
 	delete data.rounds;
 	var ary = Object.values(data).sort(function(a,b){
@@ -16,11 +16,11 @@ function updateScore(e){
 	$(ary).each(function(i,v){
 		if (i > 0) {
 			var ranks = $("tr.players td.rank");
-			if (ary[i-1].points == ary[i].points) {
+			if (ary[i-1].points === ary[i].points) {
 				$(ranks[i]).text($(ranks[i-1]).text());
 			} else {
 				$(ranks[i]).text(i+1);
-			};
+			}
 		}
 		$($("tr.players td.name input")[i]).val(v.name);
 		$($("tr.players td.name input")[i]).attr("position", v.position);
@@ -37,11 +37,11 @@ function reset(){
 
 function changePlayerName(e){
 	var obj = {};
-	position = $(e.target).attr("position");
-	name = $(e.target).val();
+	var position = $(e.target).attr("position");
+	var name = $(e.target).val();
 	obj[position] = name;
 	connection.send(JSON.stringify({ position: position, name: name}));
-};
+}
 $(document).ready(function(){
 	renewconnection();
 	$('tr.players td.name input').bind('input',changePlayerName);

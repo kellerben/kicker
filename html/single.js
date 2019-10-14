@@ -6,7 +6,7 @@ function renewconnection(){
 }
 
 function updateScore(e) {
-	score = JSON.parse(e.data);
+	var score = JSON.parse(e.data);
 	//console.log(score[viewport]);
 	$('#PlayerName').val(score[viewport].name);
 	$('#score').text(score[viewport].points);
@@ -16,18 +16,18 @@ function changePlayerName(e){
 	var obj = {};
 	obj[viewport] = $('#PlayerName').val();
 	connection.send(JSON.stringify({ position: viewport, name: $('#PlayerName').val()}));
-};
+}
 
 function goal() {
 	submitGoal(viewport);
-};
+}
 function submitGoal(name){
 	$.post("/api/goal/",{scorer:name});
 }
 
 var viewport;
 $(document).ready(function(){
-	if (location.hash.search(/^#[ns][ow]$/) == 0) {
+	if (location.hash.search(/^#[ns][ow]$/) === 0) {
 		viewport = location.hash.substr(1,2);
 		$('#PlayerName').bind('input',changePlayerName);
 		//$('#score').click(goal);
