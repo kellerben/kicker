@@ -74,14 +74,14 @@ app.post('/reset', function(req,res){
 	res.end();
 });
 app.post('/goal', urlencodedParser,function(req,res){
-	if (req.body.scorer[0] == "n") {// Point for the single one
+	if (req.body.scorer[0] === "n") {// Point for the single one
 		score[req.body.scorer].points += 1;
 	} else { // Change positions
 		var newscore = {};
 		score["rounds"] += 1;
 		newscore["rounds"] = score["rounds"];
 		newscore["nw"] = score["so"];
-		if (score["rounds"] % 3 != 0) { // rotate 2 players every 3 rounds
+		if (score["rounds"] % 3 !== 0) { // rotate 2 players every 3 rounds
 			newscore["so"] = score["sw"];
 			newscore["sw"] = score["nw"];
 		} else {
