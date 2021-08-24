@@ -57,6 +57,7 @@ function randomNames(){
 app.post('/randomNames', function(req,res){
 	randomNames();
 	sendAll(JSON.stringify(score));
+	res.end();
 });
 function reset(){
 	score = {
@@ -70,6 +71,7 @@ reset();
 app.post('/reset', function(req,res){
 	reset();
 	sendAll(JSON.stringify(score));
+	res.end();
 });
 app.post('/goal', urlencodedParser,function(req,res){
 	if (req.body.scorer[0] == "n") {// Point for the single one
