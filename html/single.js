@@ -1,6 +1,13 @@
 var connection;
 function renewconnection(){
-	connection = new WebSocket("ws://" +location.hostname+":"+location.port+"/ws/", "json");
+	let prot;
+	if (window.location.protocol === "https:") {
+		prot = "wss://";
+	} else {
+		prot = "ws://";
+	}
+
+	connection = new WebSocket(prot+location.hostname+":"+location.port+"/ws/", "json");
 	connection.onmessage = updateScore;
 	connection.onclose = renewconnection;
 }
