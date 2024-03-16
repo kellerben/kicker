@@ -37,9 +37,6 @@ Vagrant.configure("2") do |config|
 	config.vm.provision "shell", inline: <<~SHELL
 		cd /var/www/
 		npm install
-		mkdir -p html/include
-		ln -fst html/include ../../node_modules/jquery/dist/jquery.min.js
-		ln -fst html/include ../../node_modules/nosleep.js/dist/NoSleep.min.js
 		npm install pm2 -g
 		pm2 startup
 		pm2 start kicker #{DEVELOPMENT ? '--watch' : ''}
